@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opc-ua-server"
+version = "0.1.0"
+description = "Configurable asyncua-based OPC UA server with manual certificate trust onboarding"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "asyncua>=1.1.8,<2.0.0",
+    "PyYAML>=6.0,<7.0",
+]
+
+[project.scripts]
+opc-ua-server = "opc_ua_server.app:main"
+
+[tool.setuptools]
+packages = ["opc_ua_server"]

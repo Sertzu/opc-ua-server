@@ -1,0 +1,40 @@
+logging:
+  level: INFO
+  asyncua_level: WARNING
+
+server:
+  endpoint: opc.tcp://0.0.0.0:4840/opcua/server/
+  name: Configurable AsyncUA Server
+  application_uri: urn:example:configurable:opcua:server
+  product_uri: urn:example:configurable:opcua:server
+  namespace_uri: urn:example:configurable:opcua:namespace
+  security_policies:
+    - Basic256Sha256_SignAndEncrypt
+    - Basic256Sha256_Sign
+
+certificates:
+  root: ./certs
+  server_certificate: server/server_cert.pem
+  server_private_key: server/server_key.pem
+  # private_key_password_env: OPC_UA_SERVER_KEY_PASSWORD
+
+address_space:
+  nodes:
+    - type: folder
+      browse_name: Demo
+      children:
+        - type: object
+          browse_name: Line1
+          children:
+            - type: variable
+              browse_name: Temperature
+              node_id: demo.line1.temperature
+              value: 21.5
+              variant_type: Double
+              writable: true
+            - type: variable
+              browse_name: Running
+              node_id: demo.line1.running
+              value: false
+              variant_type: Boolean
+              writable: true
