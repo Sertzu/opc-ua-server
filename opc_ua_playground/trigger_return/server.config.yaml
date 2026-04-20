@@ -1,0 +1,50 @@
+logging:
+  level: INFO
+  asyncua_level: WARNING
+
+server:
+  endpoint: opc.tcp://127.0.0.1:4850/opcua/playground/trigger-return/
+  name: Playground Trigger Return Server
+  application_uri: urn:example:opcua:playground:trigger-return:server
+  product_uri: urn:example:opcua:playground:trigger-return:server
+  namespace_uri: urn:example:opcua:playground:trigger-return
+  security_policies:
+    - Basic256Sha256_SignAndEncrypt
+
+certificates:
+  root: ../certs
+  server_certificate: server/server_cert.pem
+  server_private_key: server/server_key.pem
+
+address_space:
+  nodes:
+    - type: folder
+      browse_name: Playground
+      children:
+        - type: object
+          browse_name: TriggerReturn
+          children:
+            - type: variable
+              browse_name: Request
+              node_id: trigger_return.request
+              value: 0
+              variant_type: Int16
+              writable: true
+            - type: variable
+              browse_name: RequestTimestamp
+              node_id: trigger_return.request_timestamp
+              value: 2026-01-01T00:00:00Z
+              variant_type: DateTime
+              writable: true
+            - type: variable
+              browse_name: Acknowledge
+              node_id: trigger_return.acknowledge
+              value: 0
+              variant_type: Int16
+              writable: true
+            - type: variable
+              browse_name: AcknowledgeTimestamp
+              node_id: trigger_return.acknowledge_timestamp
+              value: 2026-01-01T00:00:00Z
+              variant_type: DateTime
+              writable: true

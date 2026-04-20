@@ -1,0 +1,1 @@
+Place rejected client certificates here when you want to inspect or manually grant them.

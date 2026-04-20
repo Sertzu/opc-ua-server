@@ -91,3 +91,8 @@ Variables also support:
 
 - This first version keeps user identity handling simple and uses the trusted client application certificate as the access gate.
 - Unknown client certificates are saved as DER files so they can be moved directly from `rejected` to `granted`.
+
+## Playground
+
+Runnable client examples live under `opc_ua_playground/`.
+The first example demonstrates a trigger and return trigger handshake with sender and receiver clients plus a dedicated server config.
