@@ -7,3 +7,4 @@ __pycache__/
 
 *.der
 *pem
+opc_ua_playground/three_triggers/

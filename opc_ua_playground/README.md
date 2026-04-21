@@ -14,7 +14,8 @@ If you want to test the manual trust flow, remove a client certificate from `cli
 
 ## Examples
 
-- `trigger_return`: sender and receiver clients implementing a request and acknowledge cycle with timestamps, plus an illustrative Unified Automation C++ SDK sketch under `trigger_return/unified_automation_cpp_sdk/`
+- `trigger_return`: sender and receiver clients implementing a request and acknowledge cycle with timestamps
+- `three_triggers`: master and slave clients running watchdog, material change, and material prediction trigger-return channels in parallel
 
 Start the example server:
 
@@ -35,3 +36,15 @@ Run the sender:
 ```
 
 Both clients now use OPC UA data change subscriptions for the trigger and acknowledge nodes instead of periodic polling.
+
+Run the three-trigger slave:
+
+```bash
+/home/spark/tools/opc-ua-server/.venv/bin/python -m opc_ua_playground.three_triggers.slave
+```
+
+Run the three-trigger master:
+
+```bash
+/home/spark/tools/opc-ua-server/.venv/bin/python -m opc_ua_playground.three_triggers.master
+```

@@ -50,6 +50,20 @@ TRIGGER_RECEIVER_IDENTITY = ClientIdentity(
     private_key=CERTS_ROOT / "client_identities" / "trigger_receiver_key.pem",
 )
 
+THREE_TRIGGERS_MASTER_IDENTITY = ClientIdentity(
+    name="three_triggers_master",
+    application_uri="urn:example:opcua:playground:three-triggers:master",
+    certificate=CERTS_ROOT / "client_identities" / "three_triggers_master_cert.pem",
+    private_key=CERTS_ROOT / "client_identities" / "three_triggers_master_key.pem",
+)
+
+THREE_TRIGGERS_SLAVE_IDENTITY = ClientIdentity(
+    name="three_triggers_slave",
+    application_uri="urn:example:opcua:playground:three-triggers:slave",
+    certificate=CERTS_ROOT / "client_identities" / "three_triggers_slave_cert.pem",
+    private_key=CERTS_ROOT / "client_identities" / "three_triggers_slave_key.pem",
+)
+
 
 def configure_logging(level_name: str = "INFO") -> None:
     logging.basicConfig(
@@ -134,6 +148,14 @@ async def wait_for_value(
 
 async def write_int16(node, value: int) -> None:
     await node.write_value(ua.Variant(value, ua.VariantType.Int16))
+
+
+async def write_double(node, value: float) -> None:
+    await node.write_value(ua.Variant(value, ua.VariantType.Double))
+
+
+async def write_string(node, value: str) -> None:
+    await node.write_value(ua.Variant(value, ua.VariantType.String))
 
 
 async def write_datetime(node, value: datetime) -> None:
